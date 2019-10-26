@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html>
+    <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+            <!-- Bootstrap html-->
+            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+            <link href="../static/mdb.min.css" rel="stylesheet">
+            <link href="../static/ui_recc.css" rel="stylesheet">
+    </head>
+    <body>
+        <header class="masthead mb-auto">
+            <nav class="navbar navbar-expand-lg navbar-dark scrolling-navbar">
+                <a class="navbar-brand" href="#">Recc </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('home')}}">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Documentation</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#"> Reccomendations <span class="sr-only">(current)</span></a>
+                        </li>
+                    </ul>
+
+                </div>
+            </nav>
+        </header>
+        <main role="main">
+            <div class="headline">
+                <h1 class="display-4"> Reccomendations </h1>
+                <h3> First, lets get to know you. Please rate these movies</h2>
+            </div>
+            <div class="modal fade" id="submission" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Rating Submited</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Thanks for rating! Please do the same for the rest of the titles.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-3">
+                <img src="../static/pics/SW_LJEDI.jpg" class="card-img-top" style="max-height: 600px;" alt="...">
+                <div class="card-body">
+                    <form method="POST" name="item_id" value="179819">
+                        <h3 class="card-title">Star Wars: The Last Jedi</h3>
+                        <p class="card-text">Rey develops her newly discovered abilities with the guidance of Luke Skywalker, who is unsettled by the strength of her powers. Meanwhile, the Resistance prepares for battle with the First Order.</p>
+                        <p class="card-text"><small class="text-muted">Please rate on a scale of 1 to 5</small></p>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="rating" id="inlineradio1" value="1" >
+                            <input type="hidden" name="itemId" id="itemId" value="179819">
+                            <label class="form-check-label" for="inlineradio1">1</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="rating" id="inlineradio2" value="2">
+                            <label class="form-check-label" for="inlineradio2">2</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="rating" id="inlineradio3" value="3">
+                                <label class="form-check-label" for="inlineradio3">3</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="rating" id="inlineradio4" value="4">
+                                <label class="form-check-label" for="inlineradio4">4</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="rating" id="inlineradio5" value="5">
+                                <label class="form-check-label" for="inlineradio5">5</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary mb-2" data-toggle="modal" data-target="#submission" id="swSubmit">Submit</button>
+                    </form action="{{ url_for('recc.submit_rating') }}">
+                </div>
+            </div>
+            <div class="card mb-3">
+                <img src="../static/pics/AVG_HD1.jpg" class="card-img-top" style="max-height: 600px;" alt="...">
+                 <div class="card-body">
+                     <form method="POST">  
+                        <h3 class="card-title">Avengers: Endgame</h3>
+                        <p class="card-text">After the devastating events of Avengers: Infinity War (2018), the universe is in ruins. With the help of remaining allies, the Avengers assemble once more in order to reverse Thanos' actions and restore balance to the universe.</p>
+                        <p class="card-text"><small class="text-muted">Please rate on a scale of 1 to 5</small></p>
+                        <div class="form-check form-check-inline">
+                            <input type="hidden" name="itemId" id="itemId" value="122912">
+                            <input class="form-check-input" type="radio" name="rating" id="inlineradio1" value="1">
+                            <label class="form-check-label" for="inlineradio1">1</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="rating" id="inlineradio2" value="2">
+                            <label class="form-check-label" for="inlineradio2">2</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="rating" id="inlineradio3" value="3">
+                                <label class="form-check-label" for="inlineradio3">3</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="rating" id="inlineradio4" value="4">
+                                <label class="form-check-label" for="inlineradio4">4</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="rating" id="inlineradio5" value="5">
+                                <label class="form-check-label" for="inlineradio5">5</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary mb-2" data-toggle="modal" data-target="#submission"  id="avengersSubmit">Submit</button>
+                    </form>
+                </div>
+            </div>
+            <div class="card mb-3">
+                <img src="../static/pics/justice_league_superheroes-2560x1440.jpg" class="card-img-top" style="max-height: 600px;" alt="...">
+                <div class="card-body">
+                    <form method="POST">
+                        <h3 class="card-title">Justice League</h3>
+                        <p class="card-text">Fueled by his restored faith in humanity and inspired by Superman's selfless act, Bruce Wayne enlists the help of his new-found ally, Diana Prince, to face an even greater enemy.</p>
+                        <p class="card-text"><small class="text-muted">Please rate on a scale of 1 to 5</small></p>
+                        <div class="form-check form-check-inline">
+                            <input type="hidden" name="itemId" id="itemId" value="122898">
+                            <input class="form-check-input" type="radio" name="rating" id="inlineradio1" value="1">
+                            <label class="form-check-label" for="inlineradio1">1</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="rating" id="inlineradio2" value="2">
+                            <label class="form-check-label" for="inlineradio2">2</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="rating" id="inlineradio3" value="3">
+                                <label class="form-check-label" for="inlineradio3">3</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="rating" id="inlineradio4" value="4">
+                                <label class="form-check-label" for="inlineradio4">4</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="rating" id="inlineradio5" value="5">
+                                <label class="form-check-label" for="inlineradio5">5</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary mb-2" data-toggle="modal" data-target="#submission"  id="JLSubmit">Submit</button>
+                    </form>
+                </div>
+            </div>
+            <div class="card mb-3">
+                <img src="../static/pics/spider_man_homecoming_2017_hd-2560x1440.jpg" class="card-img-top" style="max-height: 600px;" alt="...">
+                <div class="card-body">
+                    <form method="POST">
+                        <h3 class="card-title">Spiderman: Homecoming</h3>
+                        <p class="card-text">Peter Parker balances his life as an ordinary high school student in Queens with his superhero alter-ego Spider-Man, and finds himself on the trail of a new menace prowling the skies of New York City.</p>
+                        <p class="card-text"><small class="text-muted">Please rate on a scale of 1 to 5</small></p>
+                        <div class="form-check form-check-inline">
+                            <input type="hidden" name="itemId" id="itemId" value="122926">
+                            <input class="form-check-input" type="radio" name="rating" id="inlineradio1" value="1">
+                            <label class="form-check-label" for="inlineradio1">1</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="rating" id="inlineradio2" value="2">
+                            <label class="form-check-label" for="inlineradio2">2</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="rating" id="inlineradio3" value="3">
+                                <label class="form-check-label" for="inlineradio3">3</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="rating" id="inlineradio4" value="4">
+                                <label class="form-check-label" for="inlineradio4">4</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="rating" id="inlineradio5" value="5" >
+                                <label class="form-check-label" for="inlineradio5">5</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary mb-2" data-toggle="modal" data-target="#submission" id="spidermanSubmit">Submit</button>
+                    </form>
+                </div>
+            </div>
+            <div class="card mb-3">
+                <img src="../static/pics/war_for_the_planet_of_the_apes_2017-2560x1440.jpg" class="card-img-top" style="max-height: 600px;" alt="...">
+                <div class="card-body">
+                    <form method="POST">
+                        <h3 class="card-title">War for the Planet of the Apes</h3>
+                        <p class="card-text">After the apes suffer unimaginable losses, Caesar wrestles with his darker instincts and begins his own mythic quest to avenge his kind.</p>
+                        <p class="card-text"><small class="text-muted">Please rate on a scale of 1 to 5</small></p>
+                        <div class="form-check form-check-inline">
+                            <input type="hidden" name="itemId" id="itemId" value="173145">
+                            <input class="form-check-input" type="radio" name="rating" id="inlineradio1" value="1" >
+                            <label class="form-check-label" for="inlineradio1">1</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="rating" id="inlineradio2" value="2" >
+                            <label class="form-check-label" for="inlineradio2">2</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="rating" id="inlineradio3" value="3" >
+                                <label class="form-check-label" for="inlineradio3">3</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="rating" id="inlineradio4" value="4" >
+                                <label class="form-check-label" for="inlineradio4">4</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="rating" id="inlineradio5" value="5" >
+                                <label class="form-check-label" for="inlineradio5">5</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary mb-2" data-toggle="modal" data-target="#submission"  id="wpaSubmit">Submit</button>
+                    </form>
+                </div>
+            </div>
+            <div class="card mb-3">
+                <img src="../static/pics/deadpool_2_domino_deadpool_cable_4k_8k-2560x1440.jpg" class="card-img-top" style="max-height: 600px;" alt="...">
+                <div class="card-body">
+                    <form method="POST">
+                        <h3 class="card-title">Deadpool 2</h3>
+                        <p class="card-text">Foul-mouthed mutant mercenary Wade Wilson (AKA. Deadpool), brings together a team of fellow mutant rogues to protect a young boy with supernatural abilities from the brutal, time-traveling cyborg, Cable.</p>
+                        <p class="card-text"><small class="text-muted">Please rate on a scale of 1 to 5</small></p>
+                        <div class="form-check form-check-inline">
+                            <input type="hidden" name="itemId" id="itemId" value="187593">
+                            <input class="form-check-input" type="radio" name="rating" id="inlineradio1" value="1" >
+                            <label class="form-check-label" for="inlineradio1">1</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="rating" id="inlineradio2" value="2" >
+                            <label class="form-check-label" for="inlineradio2">2</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="rating" id="inlineradio3" value="3" >
+                                <label class="form-check-label" for="inlineradio3">3</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="rating" id="inlineradio4" value="4" >
+                                <label class="form-check-label" for="inlineradio4">4</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="rating" id="inlineradio5" value="5" >
+                                <label class="form-check-label" for="inlineradio5">5</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary mb-2" data-toggle="modal" data-target="#submission"  id="deadpoolSubmit">Submit</button>
+                    </form>
+                </div>
+            </div>
+            <div class="card mb-3">
+                <img src="../static/pics/inception_cast-2560x1600.jpg" class="card-img-top" style="max-height: 600px;" alt="...">
+                <div class="card-body">
+                    <form method="POST">
+                        <h3 class="card-title">Inception</h3>
+                        <p class="card-text">A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.</p>
+                        <p class="card-text"><small class="text-muted">Please rate on a scale of 1 to 5</small></p>
+                        <div class="form-check form-check-inline">
+                            <input type="hidden" name="itemId" id="itemId" value="79132">
+                            <input class="form-check-input" type="radio" name="rating" id="inlineradio1" itemId="option1" value="1">
+                            <label class="form-check-label" for="inlineradio1">1</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="rating" id="inlineradio2" itemId="option2" value="2">
+                            <label class="form-check-label" for="inlineradio2">2</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="rating" id="inlineradio3" itemId="option3" value="3">
+                                <label class="form-check-label" for="inlineradio3">3</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="rating" id="inlineradio4" itemId="option4" value="4">
+                                <label class="form-check-label" for="inlineradio4">4</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="rating" id="inlineradio5" itemId="option5" value="5">
+                                <label class="form-check-label" for="inlineradio5">5</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary mb-2" data-toggle="modal" data-target="#submission" id="inceptionSubmit">Submit</button>
+                    </form>
+                </div>
+            </div>
+            <div class="card mb-3">
+                <img src="../static/pics/black_panther_2018_5k-2560x1440.jpg" class="card-img-top" style="max-height: 600px;" alt="...">
+                <div class="card-body">
+                    <form method="POST">
+                        <h3 class="card-title">Black Panther</h3>
+                        <p class="card-text">T'Challa, heir to the hidden but advanced kingdom of Wakanda, must step forward to lead his people into a new future and must confront a challenger from his country's past.</p>
+                        <p class="card-text"><small class="text-muted">Please rate on a scale of 1 to 5</small></p>
+                        <div class="form-check form-check-inline">
+                            <input type="hidden" name="itemId" id="itemId" value="122906">
+                            <input class="form-check-input" type="radio" name="rating" id="inlineradio1" itemId="option1" value="1">
+                            <label class="form-check-label" for="inlineradio1">1</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="rating" id="inlineradio2" itemId="option2" value="2">
+                            <label class="form-check-label" for="inlineradio2">2</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="rating" id="inlineradio3" itemId="option3" value="3">
+                                <label class="form-check-label" for="inlineradio3">3</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="rating" id="inlineradio4" itemId="option4" value="4">
+                                <label class="form-check-label" for="inlineradio4">4</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="rating" id="inlineradio5" itemId="option5" value="5">
+                                <label class="form-check-label" for="inlineradio5">5</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary mb-2" data-toggle="modal" data-target="#submission" id="bPantherSubmit">Submit</button>
+                    </form>
+                </div>
+            </div>
+            <div class="card mb-3">
+                <img src="../static/pics/the_dark_knight_rises_banner-1920x1080.jpg" class="card-img-top" style="max-height: 600px;" alt="...">
+                <div class="card-body">
+                    <form method="POST">
+                        <h3 class="card-title">The Dark Knight Rises</h3>
+                        <p class="card-text">Eight years after the Joker's reign of anarchy, Batman, with the help of the enigmatic Catwoman, is forced from his exile to save Gotham City, now on the edge of total annihilation, from the brutal guerrilla terrorist Bane.</p>
+                        <p class="card-text"><small class="text-muted">Please rate on a scale of 1 to 5</small></p>
+                        <div class="form-check form-check-inline">
+                            <input type="hidden" name="itemId" id="itemId" value="91529">
+                            <input class="form-check-input" type="radio" name="rating" id="inlineradio1" itemId="option1" value="1">
+                            <label class="form-check-label" for="inlineradio1">1</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="rating" id="inlineradio2" itemId="option2" value="2">
+                            <label class="form-check-label" for="inlineradio2">2</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="rating" id="inlineradio3" itemId="option3" value="3">
+                                <label class="form-check-label" for="inlineradio3">3</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="rating" id="inlineradio4" itemId="option4" value="4">
+                                <label class="form-check-label" for="inlineradio4">4</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="rating" id="inlineradio5" itemId="option5" value="5">
+                                <label class="form-check-label" for="inlineradio5">5</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary mb-2" data-toggle="modal" data-target="#submission" id="inceptionSubmit">Submit</button>
+                    </form>
+                </div>
+            </div>
+            <div class="card mb-3">
+                <img src="../static/pics/2017_logan_4k-2560x1440.jpg" class="card-img-top" style="max-height: 600px;" alt="...">
+                <div class="card-body">
+                    <form method="POST">
+                        <h3 class="card-title">Logan</h3>
+                        <p class="card-text">In a future where mutants are nearly extinct, an elderly and weary Logan leads a quiet life. But when Laura, a mutant child pursued by scientists, comes to him for help, he must get her to safety.</p>
+                        <p class="card-text"><small class="text-muted">Please rate on a scale of 1 to 5</small></p>
+                        <div class="form-check form-check-inline">
+                            <input type="hidden" name="itemId" id="itemId" value="168252">
+                            <input class="form-check-input" type="radio" name="rating" id="inlineradio1" itemId="1" value="1">
+                            <label class="form-check-label" for="inlineradio1">1</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="rating" id="inlineradio2" itemId="option2" value="2">
+                            <label class="form-check-label" for="inlineradio2">2</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="rating" id="inlineradio3" itemId="option3" value="3">
+                                <label class="form-check-label" for="inlineradio3">3</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="rating" id="inlineradio4" itemId="option4" value="4">
+                                <label class="form-check-label" for="inlineradio4">4</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="rating" id="inlineradio5" itemId="option5" value="5">
+                                <label class="form-check-label" for="inlineradio5">5</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary mb-2" data-toggle="modal" data-target="#submission" id="inceptionSubmit">Submit</button>
+
+                    </form>
+                </div>
+            </div>
+            <a role="button" class="btn btn-info btn-lg btn-block" href="{{ url_for('recc.load_recc')}}">Generate</a>
+        </main>
+        <footer>
+            <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+            <script type="text/javascript" src="../static/mdb.min.js"></script>
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap html-->
+        <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link href="/Users/BEATFREAK/MDB-Free_4.8.10/css/mdb.min.css" rel="stylesheet">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+        <link href="../static/ui_recc.css" rel="stylesheet">
+
+    </head>
+    <body>
+        <header class="masthead mb-auto">
+            <nav class="navbar navbar-expand-lg navbar-dark scrolling-navbar">
+                    <a class="navbar-brand" href="#">Recc </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Home </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Documentation</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="ui_recc.html"> Reccomendations</a>
+                            </li>
+                        </ul>
+    
+                    </div>
+            </nav>
+            <div class=" headline text-center">
+                <h1 class="display-4"> Generating Reccomendations...</h1>
+                <div class="spinner-grow slow" style="height: 5rem; width: 5rem;" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>                         
+            </div>
+        </header>
+        <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="/Users/BEATFREAK/MDB-Free_4.8.10/js/mdb.min.js"></script>
+        <script>
+            var base = window.location.hostname;
+            var port = window.location.port;
+            console.log(base + port+ "recc/recc_list");
+            setTimeout(function(){window.location.assign("/recc/recc_list")}, 30000);
+        </script>
+    </body>
+</html>

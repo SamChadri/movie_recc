@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+    <head>
+
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap html-->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link href="../static/mdb.min.css" rel="stylesheet">
+
+        <link href="../static/ui.css" rel="stylesheet">
+    </head>
+    <body class="text center">
+        <header class="masthead mb-auto">
+            <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
+                <a class="navbar-brand" href="#">Recc </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{{ url_for('home')}}">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Documentation</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('recc.create_user')}}"> Reccomendations</a>
+                        </li>
+                    </ul>
+
+                </div>
+            </nav>
+            <div class="jumbotron"style="background-image: url('../static/pics/HollyWood_Pic.jpg'); background-position: center center; background-size: cover; ">  
+                    <div class="headline text-center text-white ">
+                            <h1 class="animated fadeInDown display-4 text-uppercase title">MovieLens Reccomendations</h1>
+                            <hr class= "animated zoomIn" style="border-top: 3px solid white; width: 350px;">
+                            <p class="animated fadeIn lead ">Have personalized movie reccomendations based on your preferences.</p>
+                            <a class="animated fadeIn btn btn-light btn-lg" href="{{ url_for('recc.create_user')}}" role="button" aria-pressed="true">Get Started.</a>
+
+                        </div>
+                    </div>
+
+        </header>
+        <main role="main">
+            <div class="container text-center">
+                <img class="w-25" src="../static/pics/Udacity.png"></img>
+                <h1 class="text-center"><strong>Collaberative Filtering</strong></h1>
+                <hr style="border-top: 3px solid black;">
+                <img class="mx-auto"src="../static/pics/PCS.png"></img>
+                <p class="text-center"> When the reccomendations are generated, we measure the similiarity between users. We formulate that measurement using the Pearson Correlation Similiarity Measure which provides the nessesary users for an estimate. In order to improve the reccomendations, users and items are clusterd using the KMeans Clustering Algorithm. Using this technique, the means squared error can minnimized, even with minimal data.</p>
+                <p>The system framework was provided by Udacity, and this website serves as a user interace for the reccomendation engine.</p>
+                <p>Click here to read more about Udacity courses.</p>
+            </div>
+                 
+        </main>
+        <footer>
+            <p class="text-center text-muted">Made in Chicago</p>
+        </footer>
+
+        <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="../static/mdb.min.js"></script>
+
+    </body>
+</html>

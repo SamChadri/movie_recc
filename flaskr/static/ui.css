@@ -1,0 +1,17 @@
+.headline {
+    padding-top: 9rem !important;
+    padding-bottom: 9rem !important;
+}
+.title {
+    letter-spacing: 8px ;
+}
+body {
+    background-color: white;
+}
+.navbar {
+    background-color: transparent;
+}
+
+.top-nav-collapse {
+    background-color: #212121  ;
+}
