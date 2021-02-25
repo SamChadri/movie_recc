@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ml-recc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ml-recc
+  template:
+    metadata:
+      labels:
+        app: ml-recc
+    spec:
+      containers:
+      - name: recc-service
+        image: ml-recc
+        ports:
+        - containerPort: 8080
+        env:
+            - name: PORT
+              value: "8080"
+

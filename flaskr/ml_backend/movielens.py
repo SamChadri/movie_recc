@@ -6,24 +6,67 @@ import re
 
 # Read data/README to get more info on these data structures
 class User:
-    def __init__(self, id, age, sex, occupation, zip):
+    def __init__(self, id, age, sex, occupation, zip, cluster_num=None, rating_clusters=None, pcs_score=None):
         self.id = int(id)
         self.age = int(age)
         self.sex = sex
         self.occupation = occupation
         self.zip = zip
         self.avg_r = 0.0
+        if pcs_score:
+            self.pcs_score = pcs_score
+        if cluster_num:
+            self.cluster_num = cluster_num
+        if rating_clusters:
+            self.rating_clusters = rating_clusters
+
+    def __str__(self) -> str:
+        return f""" User ID: {self.id}, Age: {self.age}, Sex: {self.sex}, Occupation: {self.occupation}, Zip: {self.zip}, Average Rating: {self.avg_r} \n"""
 
 class ModernUser:
-    def __init__(self, id):
+    def __init__(self, id, pcs_score=None, rating_clusters=None):
         self.id = int(id)
         self.avg_r = 0.0
+        if rating_clusters:
+            self.rating_clusters = rating_clusters
+        if pcs_score:
+            self.pcs_score = pcs_score
+
+    def __str__(self) -> str:
+        return f""" User ID: {self.id}, Average ID: {self.avg_r} \n"""
 
 # Read data/README to get more info on these data structures
 class Item:
-    def __init__(self, id, title, release_date, video_release_date, imdb_url, \
-    unknown, action, adventure, animation, childrens, comedy, crime, documentary, \
-    drama, fantasy, film_noir, horror, musical, mystery ,romance, sci_fi, thriller, war, western):
+    def __init__(self, id=None, title=None, release_date=None, video_release_date=None, imdb_url=None, \
+    unknown=None, action=None, adventure=None, animation=None, childrens=None, comedy=None, crime=None, documentary=None, \
+    drama=None, fantasy=None, film_noir=None, horror=None, musical=None, mystery=None, romance=None, sci_fi=None, thriller=None, war=None, western=None, arg_list=None):
+        if arg_list != None:
+            self.id = int(arg_list[0])
+            self.cluster_num = int(arg_list[1])
+            self.title = arg_list[2]
+            self.release_date = arg_list[3]
+            self.video_release_date = arg_list[4]
+            self.imdb_url = arg_list[5]
+            self.unknown = int(arg_list[6])
+            self.action = int(arg_list[7])
+            self.adventure = int(arg_list[8])
+            self.animation = int(arg_list[9])
+            self.childrens = int(arg_list[10])
+            self.comedy = int(arg_list[11])
+            self.crime = int(arg_list[12])
+            self.documentary = int(arg_list[13])
+            self.drama = int(arg_list[14])
+            self.fantasy = int(arg_list[15])
+            self.film_noir = int(arg_list[16])
+            self.horror = int(arg_list[17])
+            self.musical = int(arg_list[18])
+            self.romance = int(arg_list[19])
+            self.sci_fi = int(arg_list[20])
+            self.thriller = int(arg_list[21])
+            self.war = int(arg_list[22])
+            self.western = int(arg_list[23])
+            return
+
         self.id = int(id)
         self.title = title
         self.release_date = release_date
@@ -49,9 +92,40 @@ class Item:
         self.war = int(war)
         self.western = int(western)
 
+
+    def __str__(self) -> str:
+        return f""" Movie ID: {self.id}, Movie Title: {self.title} \n"""
+
+
 class ModernItem:
-    def __init__(self, id, title, action, adventure, animation, childrens, comedy, crime, documentary, drama,\
-    fantasy, film_noir, horror, musical, mystery ,romance, sci_fi, thriller, war, western, no_genre):
+    def __init__(self, id=None, title=None, action=None, adventure=None, animation=None, childrens=None, comedy=None, crime=None, documentary=None, drama=None,\
+    fantasy=None, film_noir=None, horror=None, musical=None, mystery=None, romance=None, sci_fi=None, thriller=None, war=None, western=None, no_genre=None, arg_list=None):
+        if arg_list != None:
+            self.id = int(arg_list[0])
+            self.cluster_num = int(arg_list[1])
+            self.title = arg_list[2]
+            self.action = int(arg_list[3])
+            self.adventure = int(arg_list[4])
+            self.animation = int(arg_list[5])
+            self.childrens = int(arg_list[6])
+            self.comedy = int(arg_list[7])
+            self.crime = int(arg_list[8])
+            self.documentary = int(arg_list[9])
+            self.drama = int(arg_list[10])
+            self.fantasy = int(arg_list[11])
+            self.film_noir = int(arg_list[12])
+            self.horror = int(arg_list[13])
+            self.imax = int(arg_list[14])
+            self.musical = int(arg_list[15])
+            self.mystery = int(arg_list[16])
+            self.romance = int(arg_list[17])
+            self.sci_fi = int(arg_list[18])
+            self.thriller = int(arg_list[19])
+            self.war = int(arg_list[20])
+            self.western = int(arg_list[21])
+            self.no_genre = int(arg_list[22])
+            return
+        
         self.id = int(id)
         self.title = title
         self.action = int(action)
@@ -65,6 +139,7 @@ class ModernItem:
         self.fantasy = int(fantasy)
         self.film_noir = int(film_noir)
         self.horror = int(horror)
+        #self.imax = int(imax)
         self.musical = int(musical)
         self.mystery = int(mystery)
         self.romance = int(romance)
@@ -74,25 +149,37 @@ class ModernItem:
         self.western = int(western)
         self.no_genre = int(no_genre)
 
+    def __str__(self) -> str:
+        return f"""Modern Movie ID: {self.id}, Modern Movie Title: {self.title}"""
+
 # Read data/README to get more info on these data structures
 class Rating:
-    def __init__(self, user_id, item_id, rating, time):
+    def __init__(self, user_id, item_id, rating, time, rating_id=None):
         self.user_id = int(user_id)
         self.item_id = int(item_id)
         self.rating = float(rating)
         self.time = time
+        if rating_id != None:
+            self.rating_id = rating_id
+    
+    def __str__(self) -> str:
+        return f""" User ID: {self.user_id}, Item ID: {self.item_id}, Rating: {self.rating}, Time: {self.time}, Rating ID: {self.rating_id}\n"""
 
 class Link:
     id_links = {}
-    def __init__(self, movie_id, imdb_id, tmdb_id):
+    def __init__(self, movie_id, imdb_id, tmdb_id, link_id=None):
         self.movie_id = int(movie_id)
         if imdb_id == '':
             imdb_id  = 0
-        self.item_id = int(imdb_id)
+        self.imdb_id = int(imdb_id)
         if tmdb_id == '':
             tmdb_id = 0
         self.tmdb_id = int(tmdb_id)
         self.id_links[int(movie_id)] = int(imdb_id)
+        self.link_id = link_id
+    
+    def __str__(self) -> str:
+        return f"""Movie ID: {self.movie_id}, IMDB ID: {self.imdb_id}, TMDB ID: {self.tmdb_id}, Link ID: {self.link_id} \n"""
 
 # The dataset class helps you to load files and create User, Item and Rating objects
 class Dataset:

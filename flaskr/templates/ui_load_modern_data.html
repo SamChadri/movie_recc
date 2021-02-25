@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Components needed for Semantic UI-->
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.7/dist/semantic.min.css">
+        <link href="http://kenwheeler.github.io/slick/slick/slick.css" rel="stylesheet"/>
+        <link rel="stylesheet" type="text/css" href="http://kenwheeler.github.io/slick/slick/slick-theme.css"/>
+
+
+
+        <link href="../static/ui_recc.css" rel="stylesheet">
+
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+
+
+    </head>
+    <body>
+
+        <div class='ui center aligned container' style="margin: 60px auto 0px;">
+            <h1 class='ui center aligned header' style="font-weight: 50;">Preprocessing modern user PCS data</h1>
+        </div>
+        <h4 class="ui horizontal divider header" style="font-weight: 100;">
+          <i class="hourglass half icon"></i>
+          Loading
+        </h4>
+        <div id="udacity_logo" class="ui fluid image" style="text-align: center;margin: auto;width: 300px; display: none">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e8/Udacity_logo.svg">
+        </div>
+        <div id='intro_card' class="ui card" style="margin: 50px auto 0px; width: 450px;">
+            <div class="content">
+                <div class="center aligned header"><h3 style="font-weight: 50;">LOL. You thought.</h3></div>
+                <div class="center aligned description">
+                    <span>Seriously, the previous data is really dated.
+                        However it could still be useful for future analysis since it is linked to valuable user information.
+                        This calculated pcs data involves user ratings on what the cool kids are watching. Let's take a look.</span>
+                </div>
+            </div>
+            <div class="extra content">
+                <div class="center aligned author">
+                    <button id="transition_button" class="circular ui icon inverted basic blue button" style="width:100px;">
+                      <img class="ui avatar image" src="http://1onjea25cyhx3uvxgs4vu325-wpengine.netdna-ssl.com/wp-content/uploads/2016/02/U_360x360px.jpg" style="width:25px;  border-radius: 10%;">
+                    </button>
+         
+                </div>
+            </div>
+        </div>
+      
+        <div id="main_card" class="ui special cards" style="display: none;">
+            <div id="vue_card" class="card" style="width: 800px;margin: 40px auto 0px;" >
+                <div id='info_images' class="slickImage" style="display: block; float: left">
+                    <image-item v-for="image in images" v-bind:image="image"></image-item>
+                </div>
+                <div id="card_content" class="content">
+                    <div>
+                        <h1 style="font-weight: 100;"class="ui header">
+                            [[ curr_movie.title ]]
+                            <span style="margin: 10px 0px 0px 0px; font-size: 15px;" class="ui right floated header">
+                                <div class="ui yellow rating"></div>
+                                <a id="login_label" class="ui purple tag label">Login</a>
+                            </span>
+                        </h1>
+                    </div>
+                    <div class="meta">
+                        <span class="date">[[ curr_movie.rating ]] | [[ curr_movie.genres ]] | [[ curr_movie.release_date ]]</span>
+                    </div>
+                    <div class="description">
+                      [[ curr_movie.synopsis]]
+                    </div>
+                </div>
+                <div id="extra_card_content" class="extra content">
+                    <div style="font-weight: 100;" class="header"> Cast & Crew</div>
+                    <div>
+                        <i class="user icon"></i>
+                        <span style="font-weight: bolder" class="ui text">Director:</span>
+                        [[ curr_movie.director ]]
+                    </div>
+                    <div>
+                        <i class="users icon"></i>
+                        <span style="font-weight: bolder" class="ui text">Stars:</span>
+                        [[ curr_movie.stars ]]
+                    </div>
+                    <div>
+                        <i class="users icon"></i>
+                        <span style="font-weight: bolder" class="ui text">Writers:</span>
+                        [[ curr_movie.writers ]]
+                    </div>
+                </div>
+                <div id="ratings_content" class="extra content">
+                    <!-- TODO:Create v-bind for theese menus, like a good engineering student  -->
+                    <div class="ui three item menu" style="margin: 10px 10px 2px">
+                        <div class="item">
+                            <a>
+                                <img class="ui fluid image" style="width: 50px; height:25px; margin: 0px 10px 0px 0px" src="https://m.media-amazon.com/images/G/01/IMDb/BG_rectangle._CB1509060989_SY230_SX307_AL_.png">
+                                  IMDB
+                                <div class="floating ui purple label">[[ curr_rating.imdb ]]</div>
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a>
+                                <img class="ui fluid image" style="width: 30px; height:30px; margin: 0px 10px 0px 0px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Rotten_Tomatoes.svg/1920px-Rotten_Tomatoes.svg.png">
+                                Rotten Tomatoes
+                                <div class="floating ui purple label">[[ curr_rating.rottenTomatoes ]]</div>
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a>
+                                <img class="ui fluid image" style="width: 30px; height:30px; margin: 0px 10px 0px 0px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Metacritic_logo_original.svg/1920px-Metacritic_logo_original.svg.png">
+                                Metacritic
+                                <div class="floating ui purple label">[[ curr_rating.metacritic ]]</div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <div id='process_div' style="visibility: hidden;">
+            <div class="ui compact menu" style="margin: 30px 10px 2px">
+              <a class="item">
+                <i class="stream icon"></i> Processes
+                <div id="processLabel" class="floating ui purple label">[[ processes ]]</div>
+              </a>
+            </div>
+        </div>
+        <div id='chunksize_div' style="visibility: hidden;">
+            <div class="ui compact menu" style="margin: 10px 10px 2px">
+              <a class="item">
+                <i class="cookie bite icon"></i> Chunksize
+                <div id="chunksizeLabel" class="floating ui purple label">[[ chunksize ]]</div>    
+              </a>
+            </div>
+        </div>
+        
+
+
+
+        <div style="visibility: hidden;" class="ui purple small active progress" id="user-progress" data-value="0" style="margin: 20px auto 0px;">
+            <div class="bar">
+                <div class="progress"></div>
+            </div>
+            <div id="user-progress-label" class="label">[[ loadingLabel ]]</div>
+        </div>
+        
+        
+        <div class="tiny ui modal">
+            <div class="ui icon header">
+                <i class="user info icon"></i>
+                <div><span style="font-weight: 100">MovieLens Recommender</span></div>
+            </div>
+            <div style="text-align: center;" class="content">
+                <div style=" border-color: red">
+                    <form style="display: inline-block; width: 400px" class="ui form">
+                        <div style="" class="field">
+                            <label>Email</label>
+                            <input id="email_input" style="text-align: center" type="text" name="email" placeholder="Email">
+                        </div>
+                        <div class="field">
+                            <label>Password</label>
+                            <input id="password_input" style="text-align: center" type="password" name="password" placeholder="Password">
+                        </div>
+                        <button id="login_button" class="ui purple button" type="button">Login</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+        <script src="https://unpkg.com/vue@next"></script>
+        <script src="https://www.youtube.com/iframe_api"></script>
+        <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.7/dist/semantic.min.js"></script>
+        <script type="text/javascript" src="../static/load_modern_pcs.js?n={{ last_updated }}"></script>
+
+    </body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Components needed for Semantic UI-->
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.7/dist/semantic.min.css">
+        <link href="http://kenwheeler.github.io/slick/slick/slick.css" rel="stylesheet"/>
+        <link rel="stylesheet" type="text/css" href="http://kenwheeler.github.io/slick/slick/slick-theme.css"/>
+
+
+
+        <link href="../static/ui_recc.css" rel="stylesheet">
+
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+
+
+    </head>
+    <body>
+
+        <div class='ui center aligned container' style="margin: 60px auto 0px;">
+            <h1 class='ui center aligned header' style="font-weight: 50;">Preprocessing user PCS data</h1>
+            <p class='ui center aligned sub header' style="font-weight: 100;">(Sit tight my guy....)</p>
+        </div>
+        <div style="display: block; height: 500px">
+            <div class="ui card" style="margin: 20px auto 0px;">
+                <div class='slickImage' id="info-images">
+                    <!--<img v-for="image in images" :src="image.url" :data-caption="image.image_index" style="width: 100%;"/>-->
+                    
+                    <image-item v-for="image in images" v-bind:image="image">
+                    </image-item>
+                   
+                </div>
+                    <div class="content">
+                        <a class="header">Pearson Correlation Similiarity Measure</a>
+                        <div class="meta">
+                            <span class="date">Movielens Reccomendations</span>
+                        </div>
+                        <div class="description" id="info-fact">
+                            [[ curr_fact.fact ]]
+                        </div>
+                    </div>
+                    <div class="extra content">
+                        <a href="https://en.wikipedia.org/wiki/Pearson_correlation_coefficient" target="_blank" >
+                            <i class="book icon"></i>
+                            Read more
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        
+        <div>
+            <div class="ui compact menu" style="margin: 30px 10px 2px">
+              <a class="item">
+                <i class="stream icon"></i> Processes
+                <div id="processLabel" class="floating ui purple label">[[ processes ]]</div>
+              </a>
+            </div>
+        </div>
+        <div>
+            <div class="ui compact menu" style="margin: 10px 10px 2px">
+              <a class="item">
+                <i class="cookie bite icon"></i> Chunksize
+                <div id="chunksizeLabel" class="floating ui purple label">[[ chunksize ]]</div>
+                  
+              </a>
+            </div>
+        </div>
+
+
+
+        <div class="ui purple small active progress" id="user-progress" data-value="0" style="margin: 20px auto 0px;">
+            <div class="bar">
+                <div class="progress"></div>
+            </div>
+            <div id="user-progress-label" class="label">[[ loadingLabel ]]</div>
+        </div>
+
+
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+        <script src="https://unpkg.com/vue@next"></script>
+        <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.7/dist/semantic.min.js"></script>
+        <script type="text/javascript" src="../static/load_pcs.js?n={{ last_updated }}"></script>
+
+
+    </body>
+
+</html>

@@ -22,10 +22,10 @@ def cluster_users(users, user_data, cluster_number):
     user_labels = {}
     user_clusters= {}
     for(cluster, user) in itertools.zip_longest(kmeans_x.labels_, users):
-        user_labels[user.id] = cluster
+        user_labels[user.id] = cluster.item()
         if cluster not in user_clusters.keys():
-            user_clusters[cluster] = []
-        user_clusters[cluster].append(user)
+            user_clusters[cluster.item()] = []
+        user_clusters[cluster.item()].append(user)
     
     return user_clusters, user_labels
 
@@ -34,16 +34,16 @@ def cluster_items(items, item_data, cluster_number):
     item_data = item_data.drop([1,2,3,4], axis=1)
 
     X = item_data.values
-
+    
     kmeans_x = KMeans(n_clusters=cluster_number, random_state=0).fit(X)#prev = 5 ... 1.085, 4 ... 1.076 18 ... 1.112. 2 is the winner for now
-
+    
     item_labels = {}
     item_clusters = {}
     for (cluster, item) in itertools.zip_longest(kmeans_x.labels_, items):
-        item_labels[item.id] = cluster
+        item_labels[item.id] = cluster.item()
         if cluster not in item_clusters.keys():
-            item_clusters[cluster] = []
-        item_clusters[cluster].append(item)
+            item_clusters[cluster.item()] = []
+        item_clusters[cluster.item()].append(item)
 
     return item_clusters, item_labels
 
@@ -63,14 +63,14 @@ def cluster_new_items(items, item_data, cluster_number):
         if type(item)  == type(None):
             print(count)
         count += 1
-        item_labels[item.id] = cluster
+        item_labels[item.id] = cluster.item()
         if cluster not in item_clusters.keys():
-            item_clusters[cluster] = []
-        item_clusters[cluster].append(item)
+            item_clusters[cluster.item()] = []
+        item_clusters[cluster.item()].append(item)
 
     return item_clusters, item_labels
 
-
+"""" Average user rating, stored in item clusters. """
 def cluster_ratings(item_clusters, ratings):
     rating_clusters= {}
     for r in ratings:

@@ -1,0 +1,38 @@
+{
+    "configurations": [
+        {
+            "name": "Cloud Run: Run/Debug Locally",
+            "type": "cloudcode.cloudrun",
+            "request": "launch",
+            "build": {
+                "docker": {
+                    "path": "Dockerfile"
+                }
+            },
+            "image": "ml-recc",
+            "service": {
+                "name": "ml-recc",
+                "containerPort": 8080,
+                "resources": {
+                    "limits": {
+                        "memory": "1024Mi"
+                    }
+                }
+            },
+            "target": {
+                "minikube": {}
+            },
+            "watch": true
+        },
+        {
+            "name": "Kubernetes: Run/Debug",
+            "type": "cloudcode.kubernetes",
+            "request": "launch",
+            "skaffoldConfig": "${workspaceFolder}/skaffold.yaml",
+            "watch": true,
+            "cleanUp": true,
+            "portForward": true
+        }
+    ]
+}
+ 

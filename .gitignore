@@ -1,0 +1,6 @@
+npm **/__pycache__
+part1.py 
+flaskr/ml_backend/README*
+.cache
+node_modules
+postgres-config.json
