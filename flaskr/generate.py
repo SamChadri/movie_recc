@@ -162,7 +162,7 @@ def load_modern_pcs_data():
     moveieLens_db = MovieLensStore.get_db()
     postgres_ip = copy.deepcopy(moveieLens_db.postgres_ip)
     postgres_port = copy.deepcopy(moveieLens_db.postgres_port) 
-    user_list, _ = MovieLensStore.get_db().get_all_users()
+    user_list, _ = MovieLensStore.get_db().get_all_modern_users()
     load_task = Process(target=load_pcs, args=(user_list,postgres_ip, postgres_port,10, True))
     load_task.start()
     def generator():
