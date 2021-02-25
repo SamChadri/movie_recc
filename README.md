@@ -46,6 +46,7 @@ Now the problem comes in when trying to test this thing.
 - This took wayyyyy to long. Longer than when I was just outputing logs
 - Now I meant to test the DB within the actual application, but the pcs calculation storage idea mmmmmm can't let that go and I didn't feel like waiting to test the whole thing. Plus there already some basic tests for the DB when loading regular data.
 - This could be helped with better hardware, might try that out later
+- Spell check for these README's would also be nice ( I'm not trying to look illiterate outchea
 
 
 
@@ -56,6 +57,6 @@ Now the problem comes in when trying to test this thing.
 - Apply this to different dataset (musicc????)
 - Figure out how to optimize that pcs import
 - Oh actually test this hoe out
--
+
 This is really starting to feel like a drag, so I'm stopping for now(lol before its too late). 
 
