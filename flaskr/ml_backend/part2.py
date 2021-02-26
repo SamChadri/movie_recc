@@ -88,12 +88,15 @@ class ReccEngine:
 
     def cluster_new_data(self):
         movielens_db = MovieLensStore.get_db()
-        self.user_clusters, self.user_labels = cluster_users(movielens_db.get_all_users(),self.user_data, self.unum_clusters)
+        user_list, _ = movielens_db.get_all_users(object=True)
+        self.user_clusters, self.user_labels = cluster_users(user_list,self.user_data, self.unum_clusters)
         self.item_clusters, self.item_labels = cluster_items(movielens_db.get_all_movies(), self.item_data, self.inum_clusters)
+        #self.logger.info(f'{TAG}:: Item Labels: {self.item_labels}')
         self.rating_clusters = cluster_ratings(self.item_labels, movielens_db.get_all_ratings())
 
-
-        self.modernItem_clusters, self.modernItem_labels = cluster_new_items(movielens_db.get_all_modern_movies(), self.new_item_data, self.inum_clusters)
+        modern_movies = movielens_db.get_all_modern_movies()
+        #self.logger.info(f'{TAG}:: Modern movies - {modern_movies}')
+        self.modernItem_clusters, self.modernItem_labels = cluster_new_items(modern_movies, self.new_item_data, self.inum_clusters)
         self.modernRating_clusters = cluster_ratings(self.modernItem_labels, movielens_db.get_all_modern_ratings())
 
         print("Clusterd users and items",)

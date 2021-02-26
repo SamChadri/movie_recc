@@ -1,6 +1,7 @@
 from multiprocessing.queues import Queue
 import re
 import psycopg2
+import time
 from kubernetes import client, config
 import kubernetes
 from kubernetes.client.rest import ApiException
@@ -120,12 +121,27 @@ class MovieLensStore:
         #mp.set_start_method('spawn')
         self.dataset = Dataset()
         self.event_queue = Queue()
-        connection_check, pid = self.check_db_connections()
+        connection_check, pid, state, _ = self.check_db_connections()
         if connection_check == 1:
             self.logger.info(f'{TAG}:: Proceeding to initialize database with postgres connection PID - {pid}')
             self.create_tables()
         elif connection_check == -1:
-            self.logger.info(f'{TAG}:: Other worker performing database initialization. Postgres connection PID - {pid} on standby')
+            self.logger.info(f'{TAG}:: Other worker performing database initialization. Postgres connection PID - {pid} on standby....')
+            state_counter = 0
+            counter = 0
+            new_state = ''
+            while new_state != 'idle in transaction' or state_counter != 15:
+                _, new_pid, new_state, other_pid = self.check_db_connections(silent=True)
+                if new_state == 'idle in transaction':
+                    self.logger.info(f'{TAG}:: Other worker PID - {other_pid} State - {new_state}, incrementing counter')
+                    state_counter += 1
+                if new_state == 'active':
+                    self.logger.info(f'{TAG}:: Other worker active reseting counter')
+                    state_counter = 0 
+                time.sleep(2)
+                counter += 1
+                
+            self.logger.info(f'{TAG}:: Other worker finished initialization. Proceding...')
         elif connection_check == 0:
             self.logger.info(f'{TAG}:: Single worker application database initilization.')
         else:
@@ -335,7 +351,7 @@ class MovieLensStore:
         return self.__key_file
     #TODO: If I really feel like it, optimize transfers
 
-    def check_db_connections(self):
+    def check_db_connections(self, silent=False):
         FUNC_TAG = "check_db_connections"
         pid_command = """SELECT pg_backend_pid()"""
         activity_command = """SELECT pid, state FROM pg_stat_activity WHERE datname = 'reccEngineDb' and pid != %s;"""
@@ -344,23 +360,33 @@ class MovieLensStore:
             curr = self.conn.cursor()
             curr.execute(pid_command)
             pid = curr.fetchone()[0]
-            self.logger.info(f'{TAG}::{FUNC_TAG}:: Current postgres PID - {pid}')
+            if not silent:
+                self.logger.info(f'{TAG}::{FUNC_TAG}:: Current postgres PID - {pid}')
             curr.execute(activity_command, [pid])
             results = curr.fetchall()
-            self.logger.info(f'{TAG}::{FUNC_TAG}:: Connection results - {results}')
             if len(results) > 0:
-                self.logger.warn(f'{TAG}::{FUNC_TAG}:: Found other postgresql connections')
+                if not silent:
+                    self.logger.warn(f'{TAG}::{FUNC_TAG}:: Found other postgresql connections')
+                    self.logger.info(f'{TAG}::{FUNC_TAG}:: Connection results - {results}')
                 connection = results[0]
                 if pid < connection[0]:
-                    return 1, pid
+                    curr.close()
+                    self.conn.commit()
+                    return 1, pid, connection[1], connection[0]
                 else:
-                    return -1, pid
+                    curr.close()
+                    self.conn.commit()
+                    return -1, pid, connection[1], connection[0]
             else:
+                curr.close()
+                self.conn.commit()
                 self.logger.info(f'{TAG}::{FUNC_TAG}:: No other connections found.')
-                return 0, pid
+                return 0, pid, None
         except (Exception, psycopg2.DatabaseError) as error:
             self.logger.error(f'{TAG}::{FUNC_TAG}:: Error occured: {error}')
-            return -2, 'NA'
+            curr.close()
+            self.conn.commit()
+            return -2, 'NA', None
     def load_users(self,file="flaskr/data/u.user"):
         FUNC_TAG='load_users'
         count_command = """SELECT COUNT (*) FROM users"""
@@ -729,7 +755,7 @@ class MovieLensStore:
         self.logger.info(f'{TAG}::{FUNC_TAG}:: Loading modern item clusters...')
         try:
             curr = self.conn.cursor()
-            for key, value in self.item_labels.items():
+            for key, value in self.modernItem_labels.items():
                 curr.execute(update_command, (value, key))
                 records_affected += curr.rowcount
             curr.close()
@@ -810,9 +836,9 @@ class MovieLensStore:
         
         return user
 
-    def get_all_users(self):
+    def get_all_users(self, object=False):
         FUNC_TAG = 'get_all_users'
-        query = """SELECT user_id FROM users"""
+        query = """SELECT * FROM users"""
         try:
             curr = self.conn.cursor()
             curr.execute(query)
@@ -820,7 +846,10 @@ class MovieLensStore:
             result = curr.fetchone()
             user_ids = []
             while result is not None:
-                user_ids.append(result[0])
+                if object:
+                    user_ids.append(User(result[0], result[1], result[2], result[3], result[4],cluster_num=result[5], rating_clusters=result[6], pcs_score=result[7]))
+                else:
+                    user_ids.append(result[0])
                 result = curr.fetchone()
             
             curr.close()
@@ -997,7 +1026,7 @@ class MovieLensStore:
 
     def get_all_ratings(self):
         FUNC_TAG = "get_all_ratings"
-        rating_query = """SELECT * FROM modern_ratings"""
+        rating_query = """SELECT * FROM ratings"""
 
         try:
             curr = self.conn.cursor()
@@ -1240,17 +1269,19 @@ class MovieLensStore:
     def get_all_modern_movies(self):
         FUNC_TAG = "get_all_modern_movies"
         movie_query = """SELECT * FROM modern_items"""
-
+        error_result = ''
         try:
             curr = self.conn.cursor()
             curr.execute(movie_query)
             results = curr.fetchall()
+            #self.logger.info(f'{TAG}::{FUNC_TAG}:: DB Results {results}')
             modern_ratings = []
             for result in results:
+                error_result = result
                 modern_ratings.append(ModernItem(arg_list=result))
             return modern_ratings
         except (Exception, psycopg2.DatabaseError) as error:
-            self.logger.info(f'{TAG}::{FUNC_TAG}:: Error occurred: {error}')
+            self.logger.info(f'{TAG}::{FUNC_TAG}:: Error occurred: {error}. Error specification {error_result}')
             self.conn.cursor().close()
             return None
 

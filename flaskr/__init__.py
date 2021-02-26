@@ -1,3 +1,4 @@
+from json import load
 from flaskr.ml_backend.postgres.movielens_store import MovieLensStore
 import os
 import sys
@@ -38,9 +39,9 @@ def create_app(test_config=None):
 
     #app.config['workers'] = pool
     with app.app_context():
+        MovieLensStore.init_db()
         from . import generate
         app.register_blueprint(generate.bp)
-        MovieLensStore.init_db()
 
     from . import celery_utils
     celery_utils.init_celery(app, generate.celery)
@@ -53,6 +54,9 @@ def create_app(test_config=None):
         pcs_init = MovieLensStore.get_db().pcs_loaded and MovieLensStore.get_db().modern_pcs_loaded
         if not pcs_init:
             return redirect(url_for('recc.load_data'))
+        
+        if generate.load_task != None:
+            generate.load_task.terminate()
         
         return render_template('ui_home.html')
     return app

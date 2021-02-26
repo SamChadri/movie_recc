@@ -21,6 +21,30 @@ class MoviePoster:
 engine_init = False
 TAG = 'Reccomender'
 class Reccomender:
+
+
+    @classmethod
+    def init_engine(cls):
+        cls.__engine = ReccEngine()
+        cls.__engine_init = True
+    
+
+    @classmethod
+    def get_engine(cls):
+        return cls.__engine
+    
+    @classmethod
+    def set_engine_clusters(cls):
+        cls.__engine.user_clusters, cls.__engine.user_labels = ''
+        cls.__engine.item_clusters, cls.__engine.item_labels = ''
+        cls.__engine.rating_clusters = ''
+
+        cls.__engine.modernItem_clusters, cls.__engine.modernItem_labels = ''
+        cls.__engine.modernRating_clusters = ''
+
+    @classmethod
+    def instance_init(cls):
+        return cls.__instance_init
     
     def __init__(self):
         global engine_init

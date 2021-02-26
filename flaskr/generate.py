@@ -31,7 +31,7 @@ class ReccBlueprint:
         self.task = None
         self.inserted_ratings = []
         self.inserted_user = None
-        #self.recc = Reccomender()
+        self.recc = Reccomender()
 
     def create_shared_list(self):
         self.recc_results = Manager().list()
@@ -131,6 +131,7 @@ def register_credentials():
 
 @bp.route("/load_modern_data", methods=["GET"])
 def load_modern_data():
+    load_task.terminate()
     return render_template('ui_load_modern_data.html',users=user_list, last_updated=dir_last_updated('flaskr/static/'))
 
 @bp.route("/load_pcs_data", methods=["GET"])
