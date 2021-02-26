@@ -9,7 +9,7 @@ Although I found out this was not possible to do for free(kind of) and not worth
 
 This was also supposed to be a playground for a potential usecase for project HeyBigHead. 
 
-From what I understand, Google Anthos is built on top of Kubernetes and is meant to modernize application development/deployment using the quality engineering practices. This is done through a collection of services that can be grouped into Application Development, Application Deployment, Policy Enforcement, Service Management, Cluster Management, and Infastructure Management. 
+From what I understand, Google Anthos is built on top of Kubernetes and is meant to modernize application development/deployment using quality engineering practices. This is done through a collection of services that can be grouped into Application Development, Application Deployment, Policy Enforcement, Service Management, Cluster Management, and Infastructure Management. 
 
 For application development, I went with Cloud Code since that was one of the components in the Anthos Sandbox. For the most part, it's quite usefull and supports a variety of use cases.
 
