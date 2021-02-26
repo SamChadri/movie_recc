@@ -38,7 +38,7 @@ To mitigate the amount of time needed for this I tried some multiprocessing. How
 
 Here comes a sub gripe. The output Kubernetes view starts to bug out(stop emitting logs) after a certain amount of output, whether its a progress log output or streaming log output. This is not consistent with the official logs for minikube when I clicked view logs. This may not seem like a big thing, but this is little issue significantly changed the course of this application afterwards.
 
-Anyway, I decided to create a website UI for progress bar(now I started to do too much). This was a sub thought experiment for web app development, again cuz I was bored.
+Anyway, I decided to create a website UI for the progress bar(now I started to do too much). This was a sub thought experiment for web app development, again cuz I was bored.
 
 Now the problem comes in when trying to test this thing.
 
