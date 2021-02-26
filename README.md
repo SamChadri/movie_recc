@@ -23,7 +23,7 @@ Now cluster management and infastructure management were intruiging especially t
 ### Gripes
 - The deployment process is a pain. Mostly having to rebuild the container every time is really time consuming to the development process. Having some version control or only updating changes in the container would be nice
 - You actually might be able to do this, but when deploying stateful applications, I would like to be able to make changes to the application without tearing down the database.
-- Skaffold/Cloud Code with Kuberenetes. Cloud Code deferes alot of documentation and explanation to skaffold since that is what it is built on top of. Better documentation would be nice, especially on how to customize the deployment process, cuz I really got lost when trying to deploy this on a local/remote machine(if that makes sense). Customization seems only possible if you know what your doing, and skaffold doesn't really tell you how to integrate and fine tune your application with google services(or any other cloud provider).
+- Skaffold/Cloud Code with Kuberenetes. Cloud Code defers alot of documentation and explanation to skaffold since that is what it is built on top of. Better documentation would be nice, especially on how to customize the deployment process, cuz I really got lost when trying to deploy this on a local/remote machine(if that makes sense). Customization seems only possible if you know what your doing, and skaffold doesn't really tell you how to integrate and fine tune your application with google services(or any other cloud provider).
 - Also an editor for website previews would be nice.
 
 ### Implementation Details/Issues
