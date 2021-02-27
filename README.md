@@ -25,6 +25,7 @@ Now cluster management and infastructure management were intruiging especially t
 - You actually might be able to do this, but when deploying stateful applications, I would like to be able to make changes to the application without tearing down the database.
 - Skaffold/Cloud Code with Kuberenetes. Cloud Code defers alot of documentation and explanation to skaffold since that is what it is built on top of. Better documentation would be nice, especially on how to customize the deployment process, cuz I really got lost when trying to deploy this on a local/remote machine(if that makes sense). Customization seems only possible if you know what your doing, and skaffold doesn't really tell you how to integrate and fine tune your application with google services(or any other cloud provider).
 - Also an editor for website previews would be nice.
+- For workers to be able to communicate or to have some kind of shared storage in Gunicorn.
 
 ### Implementation Details/Issues
 
@@ -47,7 +48,7 @@ Now the problem comes in when trying to test this thing.
 - Now I meant to test the DB within the actual application, but the pcs calculation storage idea mmmmmm can't let that go and I didn't feel like waiting to test the whole thing. Plus there already some basic tests for the DB when loading regular data.
 - This could be helped with better hardware, might try that out later
 - Spell check for these README's would also be nice ( I'm not trying to look illiterate outchea)
-- For workers to be able to communicate or to have some kind of shared storage in Gunicorn.
+
 
 
 
