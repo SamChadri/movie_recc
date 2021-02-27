@@ -47,6 +47,7 @@ Now the problem comes in when trying to test this thing.
 - Now I meant to test the DB within the actual application, but the pcs calculation storage idea mmmmmm can't let that go and I didn't feel like waiting to test the whole thing. Plus there already some basic tests for the DB when loading regular data.
 - This could be helped with better hardware, might try that out later
 - Spell check for these README's would also be nice ( I'm not trying to look illiterate outchea)
+- For workers to be able to communicate or to have some kind of shared storage in Gunicorn.
 
 
 
